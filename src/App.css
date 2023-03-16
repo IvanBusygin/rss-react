@@ -1,0 +1,27 @@
+#root {
+  /*text-align: center;*/
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  width: 95%;
+  max-width: 70rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /*font-size: 10px;*/
+}
+
+a {
+  text-decoration: none;
+}
