@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import styles from './Nav.module.scss';
+import styles from './nav.module.scss';
 
 export default function Nav() {
   type IActiveLink = { isActive: boolean };
@@ -9,13 +9,13 @@ export default function Nav() {
     <nav className={styles.navigation}>
       <NavLink
         className={activeElem}
-        to="/"
+        to="Main"
       >
         Main
       </NavLink>
       <NavLink
         className={activeElem}
-        to="about"
+        to="About"
       >
         About Us
       </NavLink>

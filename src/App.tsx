@@ -1,32 +1,36 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 
-import Layout from './components/layouts/Layout';
 import Main from './pages/Main/Main';
 import AboutUs from './pages/AboutUs/AboutUs';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Header from './components/layouts/Header/Header';
+import Footer from './components/layouts/Footer/Footer';
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Layout />}
-      >
+    <>
+      <Header />
+      <Routes>
         <Route
-          index
+          path="/"
+          element={<Navigate to="Main" />}
+        />
+        <Route
+          path="Main"
           element={<Main />}
         />
         <Route
-          path="about"
+          path="About"
           element={<AboutUs />}
         />
         <Route
           path="*"
           element={<NotFoundPage />}
         />
-      </Route>
-    </Routes>
+      </Routes>
+      <Footer />
+    </>
   );
 }
 

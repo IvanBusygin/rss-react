@@ -1,6 +1,6 @@
 import styles from './footer.module.scss';
-import gitHubIcon from '../../../assets/img/github-mark.svg';
-import rsSchoolIcon from '../../../assets/img/rs_school-icon.svg';
+import gitHubIcon from '../../../assets/svg/github-mark.svg';
+import rsSchoolIcon from '../../../assets/svg/rs_school-icon.svg';
 
 function Footer() {
   return (
