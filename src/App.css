@@ -13,7 +13,8 @@
   box-sizing: border-box;
 }
 
-body {
+body,
+p {
   padding: 0;
   margin: 0;
 }

@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
+// https://vitejs.dev/config/
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import vitePluginEslint from 'vite-plugin-eslint';
 
-// https://vitejs.dev/config/
 type IVite = { mode: string; command: string };
 
 export default ({ mode }: IVite) => {
