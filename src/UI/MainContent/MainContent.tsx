@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import cln from 'classnames';
 import styles from './mainContent.module.scss';
 
@@ -7,11 +7,13 @@ interface IMainProps {
   children: React.ReactNode;
 }
 
-export default function MainContent(props: IMainProps) {
-  const { className, children } = props;
-  return <div className={cln(styles.main, className)}>{children}</div>;
-}
+export default class MainContent extends Component<IMainProps> {
+  static defaultProps = {
+    className: '',
+  };
 
-MainContent.defaultProps = {
-  className: '',
-};
+  render() {
+    const { className, children } = this.props;
+    return <div className={cln(styles.main, className)}>{children}</div>;
+  }
+}

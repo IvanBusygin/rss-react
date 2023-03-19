@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
 
-  width: 95%;
-  max-width: 70rem;
+  /*width: 95%;*/
+  /*max-width: 70rem;*/
 }
 
 * {
@@ -17,6 +17,7 @@ body,
 p {
   padding: 0;
   margin: 0;
+  font-family: Roboto-Regular, sans-serif;
 }
 
 html {

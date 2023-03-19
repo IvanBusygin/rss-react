@@ -6,6 +6,7 @@ import { withRouter } from '../../../HOC/WithRouter';
 interface WithRouterProps {
   location: ReturnType<typeof useLocation>;
 }
+
 function Header({ location }: WithRouterProps) {
   const localPath = location?.pathname.slice(1);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import cln from 'classnames';
 import styles from './card.module.scss';
 
@@ -7,11 +7,15 @@ interface ICardProps {
   children: React.ReactNode;
 }
 
-export default function Card(props: ICardProps) {
-  const { className, children } = props;
-  return <div className={cln(styles.card, className)}>{children}</div>;
+class Card extends Component<ICardProps> {
+  static defaultProps = {
+    className: '',
+  };
+
+  render() {
+    const { className, children } = this.props;
+    return <div className={cln(styles.card, className)}>{children}</div>;
+  }
 }
 
-Card.defaultProps = {
-  className: '',
-};
+export default Card;

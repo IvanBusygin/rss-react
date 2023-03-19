@@ -7,8 +7,13 @@
   background-color: #f2f2f2;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  width: 350px;
-  margin: .5rem;
+  width: 380px;
+  margin: 1rem;
+
+  &-cover {
+    border-radius: .5rem;
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.5);
+  }
 
   &-info {
     display: flex;
@@ -19,24 +24,23 @@
     & h2 {
       font-size: 1.5rem;
       font-weight: bold;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem;
     }
 
     & p {
-      text-align: center;
       margin-bottom: 0.5rem;
     }
   }
 
   &-description {
-    height: 220px;
+    height: 200px;
     overflow-y: auto;
-
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 0.25rem 0.5rem;
     border: 1px solid #999;
     border-radius: 5px;
+    text-align: justify;
   }
 
   &-meta {
@@ -70,29 +74,20 @@
   &-level {
 
     & p {
-      font-size: 0.8rem;
+      font-size: 1rem;
       font-weight: bold;
       text-transform: uppercase;
     }
   }
 
-  &-lang {
-    margin-bottom: 0.5rem;
-
-    & p {
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-  }
-
-  &-unique {
+  &-details {
     display: flex;
     justify-content: space-between;
+    align-items: end;
     width: 100%;
   }
 
-  &-unique p {
+  &-details p {
     font-size: 0.8rem;
   }
 }

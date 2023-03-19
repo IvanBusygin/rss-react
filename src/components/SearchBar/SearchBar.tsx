@@ -15,7 +15,7 @@ class SearchBar extends Component<object, ISearchBarState> {
   }
 
   componentDidMount() {
-    const savedValue = localStorage.getItem('searchBarValue');
+    const savedValue = localStorage.getItem('busygin-searchBarValue');
     if (savedValue) {
       this.setState({ inputValue: savedValue });
     }
@@ -23,7 +23,7 @@ class SearchBar extends Component<object, ISearchBarState> {
 
   componentWillUnmount() {
     const { inputValue } = this.state;
-    localStorage.setItem('searchBarValue', inputValue);
+    localStorage.setItem('busygin-searchBarValue', inputValue);
   }
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {

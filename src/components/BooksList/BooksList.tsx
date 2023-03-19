@@ -8,7 +8,6 @@ interface IBookList {
   books: IBook[];
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
 class BooksList extends Component<IBookList> {
   render() {
     const { books } = this.props;
