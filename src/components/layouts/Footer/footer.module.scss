@@ -1,0 +1,31 @@
+.footer {
+  margin-top: 1rem;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #333;
+  background-color: #f2f2f2;
+
+  &__githubWrapper {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__github,
+  &__year,
+  &__logo {
+    display: block;
+  }
+
+  &__github,
+  &__year {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: #333;
+  }
+
+  &__logo {
+    height: 25px;
+  }
+}

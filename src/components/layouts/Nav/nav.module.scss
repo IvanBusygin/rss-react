@@ -1,0 +1,22 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & a {
+    display: block;
+    margin: 0 10px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #777;
+    }
+  }
+}
+
+.activeLink {
+  border-bottom: #555 solid 1px;
+}
