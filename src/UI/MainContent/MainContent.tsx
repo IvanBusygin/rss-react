@@ -14,6 +14,6 @@ export default class MainContent extends Component<IMainProps> {
 
   render() {
     const { className, children } = this.props;
-    return <div className={cln(styles.main, className)}>{children}</div>;
+    return <main className={cln(styles.main, className)}>{children}</main>;
   }
 }

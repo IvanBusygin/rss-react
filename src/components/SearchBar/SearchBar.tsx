@@ -6,6 +6,8 @@ interface ISearchBarState {
 }
 
 class SearchBar extends Component<object, ISearchBarState> {
+  private storageKey = 'books-searchBarValue';
+
   constructor(props: object) {
     super(props);
     this.state = {
@@ -14,16 +16,16 @@ class SearchBar extends Component<object, ISearchBarState> {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    const savedValue = localStorage.getItem('busygin-searchBarValue');
+  componentDidMount(): void {
+    const savedValue = localStorage.getItem(this.storageKey);
     if (savedValue) {
       this.setState({ inputValue: savedValue });
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     const { inputValue } = this.state;
-    localStorage.setItem('busygin-searchBarValue', inputValue);
+    localStorage.setItem(this.storageKey, inputValue);
   }
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {

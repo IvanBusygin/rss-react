@@ -24,7 +24,7 @@ describe('SearchBar', () => {
     fireEvent.change(inputElement, { target: { value: inputValue } });
     expect(inputElement).toHaveValue(inputValue);
     unmount();
-    expect(spyLocalStorage).toHaveBeenCalledWith('busygin-searchBarValue', inputValue);
+    expect(spyLocalStorage).toHaveBeenCalledWith('books-searchBarValue', inputValue);
     spyLocalStorage.mockRestore();
   });
 

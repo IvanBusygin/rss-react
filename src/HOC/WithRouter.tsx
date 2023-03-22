@@ -11,9 +11,7 @@ export interface WithRouterProps {
 }
 
 /** @deprecated Use `React Router hooks` instead */
-export const withRouter = <Props extends WithRouterProps>(
-  Component: React.ComponentType<Props>,
-) => {
+const withRouter = <Props extends WithRouterProps>(Component: React.ComponentType<Props>) => {
   return function Fn(props: Omit<Props, keyof WithRouterProps>) {
     const location = useLocation();
     const params = useParams();
@@ -29,3 +27,5 @@ export const withRouter = <Props extends WithRouterProps>(
     );
   };
 };
+
+export default withRouter;
