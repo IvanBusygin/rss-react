@@ -14,7 +14,7 @@ class Card extends Component<ICardProps> {
 
   render() {
     const { className, children } = this.props;
-    return <div className={cln(styles.card, className)}>{children}</div>;
+    return <article className={cln(styles.card, className)}>{children}</article>;
   }
 }
 
