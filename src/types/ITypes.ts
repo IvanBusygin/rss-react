@@ -26,3 +26,13 @@ export enum ILanguage {
   'BRITISH' = 'BRITISH',
   'USA' = 'USA',
 }
+
+export interface IUser {
+  name: string;
+  surname: string;
+  dateValue: string;
+  selectValue: string;
+  checkboxValue: boolean;
+  switchValue: string;
+  filePhoto: string | undefined;
+}

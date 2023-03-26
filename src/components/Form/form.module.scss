@@ -1,0 +1,99 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  //gap: 0.5rem;
+
+  & .radio {
+    display: flex;
+    gap: 15px;
+  }
+
+  & input[type="text"],
+  & input[type="date"],
+  & select,
+  & input[type="checkbox"],
+  & input[type="radio"],
+  & input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+  }
+
+  & input[type="checkbox"],
+  & input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+
+  &-select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+  }
+}
+
+
+.select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+}
+
+.block {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0062cc;
+  }
+}
+
+.error {
+  position: relative;
+  width: 100%;
+
+  &__msg {
+    position: absolute;
+    transform: translate(-10%);
+    white-space: nowrap;
+    font-size: .9rem;
+    color: red;
+  }
+
+  &__request {
+    transform: translate(-50%);
+    white-space: nowrap;
+    position: absolute;
+    color: red;
+    font-size: 1.5rem;
+  }
+}
+
+label {
+  padding: 0;
+}

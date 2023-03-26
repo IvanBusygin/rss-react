@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styles from './bookCard.module.scss';
-import IBook from '../../types/IBooks';
+import IBook from '../../types/ITypes';
 
 interface IBookCard {
   book: IBook;

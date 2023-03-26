@@ -5,6 +5,7 @@ import NavItem from './NavItem';
 const routes: { [key: string]: string } = {
   '/Main': 'Main',
   '/About': 'About Me',
+  '/Form': 'Form',
 };
 
 const routesKeys = Object.keys(routes);

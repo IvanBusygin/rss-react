@@ -1,4 +1,4 @@
-import { ILevel, ILanguage } from '../../types/IBooks';
+import { ILevel, ILanguage } from '../../types/ITypes';
 
 export default [
   {

@@ -1,0 +1,59 @@
+
+.modal {
+  &__cover {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    pointer-events: none;
+  }
+
+  &__info {
+    width: 80%;
+    max-width: 25rem;
+    padding: 1rem 3rem;
+    background-color: #c7eaff;
+    border-radius: 1rem;
+    color: #222222;
+    font-family: 'Roboto-Medium', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-duration: 5s;
+    animation-name: showMessage;
+  }
+}
+
+@keyframes showMessage {
+  0% {
+    top: -10%;
+  }
+
+  20% {
+    top: 1rem;
+  }
+
+  80% {
+    top: 1rem;
+  }
+
+  100% {
+    top: -10%;
+  }
+}
+
+@media (max-width: 520px) {
+  .modal {
+    &__info {
+      font-size: .9rem;
+    }
+  }
+}
