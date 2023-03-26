@@ -2,22 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: .5rem;
   padding: 1rem;
   border: 1px solid #ccc;
-
   border-radius: 5px;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  //gap: 0.5rem;
 
   & .radio {
     display: flex;
     gap: 15px;
   }
+
 
   & input[type="text"],
   & input[type="date"],
@@ -28,7 +27,7 @@
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 10px;
     background-color: #f9f9f9;
   }
 
@@ -43,8 +42,18 @@
     border-radius: 3px;
     background-color: #f9f9f9;
   }
-}
 
+  & input:focus {
+    outline: none;
+    border-color: #0649a0;
+    background: #c2d9f6;
+  }
+
+  &.invalid input {
+    border-color: red;
+    background: #eadfdf;
+  }
+}
 
 .select {
   padding: 0.5rem;
@@ -55,9 +64,11 @@
 
 .block {
   width: 100%;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 20px;
 }
 
 .button {
@@ -96,4 +107,22 @@
 
 label {
   padding: 0;
+}
+
+.input-block {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: .5rem 1rem 1rem;
+  height: 83px;
+
+  &-err {
+    border: 1px solid red;
+  }
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
 }

@@ -44,6 +44,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 1,
     '@typescript-eslint/no-unused-vars': 1,
     'react/no-unused-state': 1,
+    'react/no-unused-prop-types': 1,
     'react/no-unused-class-component-methods': 1,
     'react/prefer-stateless-function': 0,
     'react/static-property-placement': 0,

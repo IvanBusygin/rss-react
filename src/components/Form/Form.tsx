@@ -3,7 +3,10 @@ import React, { Component, RefObject } from 'react';
 import styles from './form.module.scss';
 import { IUser } from '../../types/ITypes';
 import Button from '../../UI/Button/Button';
-import isFirstLetterCapital from '../../utils/utils';
+import Input from './Input';
+import { isFirstLetterCapital, isDateValid } from '../../utils/utils';
+import InputRadio from './InputRadio';
+import InputSelect from './InputSelect';
 
 interface IFormProps {
   onAddNewCard: (data: IUser) => void;
@@ -72,7 +75,7 @@ class Form extends Component<IFormProps, IFormState> {
       isNotValid = true;
     } else this.setState({ surnameErr: false });
 
-    if (dateRef.current?.value === '') {
+    if (!isDateValid(dateRef.current?.value || '')) {
       this.setState({ dateValueErr: true });
       isNotValid = true;
     } else this.setState({ dateValueErr: false });
@@ -173,126 +176,69 @@ class Form extends Component<IFormProps, IFormState> {
         className={styles.form}
         onSubmit={this.handleSubmit}
       >
-        <div>Add new card</div>
+        <div className={styles.title}>Add new card</div>
         <div className={styles.block}>
-          <div>
-            <label className={styles.label}>
-              Name
-              <input
-                defaultValue="Ff"
-                type="text"
-                ref={this.inputName}
-              />
-            </label>
-            <div className={styles.error}>
-              {nameErr && <p className={styles.error__msg}>The first letter must be uppercase</p>}
-            </div>
-          </div>
-
-          <div>
-            <label className={styles.label}>
-              Surname
-              <input
-                defaultValue="FfFf"
-                type="text"
-                ref={this.inputSurname}
-              />
-            </label>
-            <div className={styles.error}>
-              {surnameErr && (
-                <p className={styles.error__msg}>The first letter must be uppercase</p>
-              )}
-            </div>
-          </div>
+          <Input
+            label="Name"
+            err={nameErr}
+            errMsg="The first letter must be uppercase"
+            inputRef={this.inputName}
+          />
+          <Input
+            label="Surname"
+            err={surnameErr}
+            errMsg="The first letter must be uppercase"
+            inputRef={this.inputSurname}
+          />
         </div>
 
         <div className={styles.block}>
-          <div>
-            <label className={styles.label}>
-              Birthday
-              <input
-                type="date"
-                ref={this.dateRef}
-              />
-            </label>
-            <div className={styles.error}>
-              {dateValueErr && <p className={styles.error__msg}>Choose Date</p>}
-            </div>
-          </div>
-
-          <label className={styles.label}>
-            Need a job?
-            <input
-              type="checkbox"
-              ref={this.checkboxRef}
-            />
-          </label>
+          <Input
+            label="Birthday"
+            type="date"
+            err={dateValueErr}
+            errMsg="Choose correct date"
+            inputRef={this.dateRef}
+          />
+          <Input
+            type="checkbox"
+            inputRef={this.checkboxRef}
+            label="Need a job?"
+          />
         </div>
 
-        <label>
-          Your preferred framework
-          <select
-            className={styles.select}
-            ref={this.selectRef}
-            defaultValue="Choose"
-          >
-            <option value="Choose">Choose framework</option>
-            <option value="Vue">Vue js</option>
-            <option value="React">React</option>
-            <option value="Angular">Angular</option>
-          </select>
-        </label>
-        <div className={styles.error}>
-          {selectValueErr && <p className={styles.error__msg}>Choose framework</p>}
+        <div className={styles.block}>
+          <InputSelect
+            selectRef={this.selectRef}
+            err={selectValueErr}
+            errMsg="Choose framework"
+          />
+
+          <InputRadio
+            label="Specify your level"
+            name="switcher"
+            value1="Junior"
+            value2="Middle"
+            value3="Senior"
+            radio1Ref={this.switchRef1}
+            radio2Ref={this.switchRef2}
+            radio3Ref={this.switchRef3}
+            err={switchValueErr}
+            errMsg="Specify your level"
+          />
         </div>
 
-        <label className={styles.label}>
-          Specify your level
-          <div className={styles.radio}>
-            <div>
-              <input
-                type="radio"
-                name="switcher"
-                value="Junior"
-                ref={this.switchRef1}
-              />
-              Junior
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="switcher"
-                value="Middle"
-                ref={this.switchRef2}
-              />
-              Middle
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="switcher"
-                value="Senior"
-                ref={this.switchRef3}
-              />
-              Senior
-            </div>
-          </div>
-        </label>
-        <div className={styles.error}>
-          {switchValueErr && <p className={styles.error__msg}>Specify your level</p>}
-        </div>
-
-        <label className={styles.label}>
-          Your Photo
-          <input
+        <div className={styles.block}>
+          <Input
+            inputRef={this.fileRef}
+            label="Your Photo"
             type="file"
             accept="image/*"
-            ref={this.fileRef}
+            errMsg="Choose your photo"
+            err={filePhotoErr}
           />
-          <div className={styles.error}>
-            {filePhotoErr && <p className={styles.error__msg}>Choose your photo</p>}
-          </div>
-        </label>
+        </div>
+
         <Button type="submit">Submit</Button>
       </form>
     );
