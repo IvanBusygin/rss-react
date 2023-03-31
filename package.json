@@ -17,22 +17,23 @@
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0"
+    "react-hook-form": "^7.43.9",
+    "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/react": "^18.0.29",
+    "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
     "@types/testing-library__jest-dom": "^5.14.5",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
     "@vitejs/plugin-react": "^3.1.0",
-    "@vitest/coverage-c8": "^0.29.7",
-    "@vitest/ui": "^0.29.7",
-    "eslint": "^8.36.0",
+    "@vitest/coverage-c8": "^0.29.8",
+    "@vitest/ui": "^0.29.8",
+    "eslint": "^8.37.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
@@ -44,9 +45,9 @@
     "jsdom": "^21.1.1",
     "prettier": "^2.8.7",
     "sass": "^1.60.0",
-    "typescript": "^5.0.2",
+    "typescript": "^5.0.3",
     "vite": "^4.2.1",
     "vite-plugin-eslint": "^1.8.1",
-    "vitest": "^0.29.7"
+    "vitest": "^0.29.8"
   }
 }
