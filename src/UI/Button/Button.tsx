@@ -7,7 +7,7 @@ interface IButton {
   children?: string;
 }
 
-export default function Button(props: IButton) {
+function Button(props: IButton) {
   const { type, onClick, children } = props;
   return (
     <button
@@ -25,3 +25,5 @@ Button.defaultProps = {
   children: null,
   type: 'button',
 };
+
+export default Button;

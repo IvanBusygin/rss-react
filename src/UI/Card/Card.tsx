@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import { ReactNode } from 'react';
 import cln from 'classnames';
 import styles from './card.module.scss';
 
 interface ICardProps {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-class Card extends Component<ICardProps> {
-  static defaultProps = {
-    className: '',
-  };
-
-  render() {
-    const { className, children } = this.props;
-    return <article className={cln(styles.card, className)}>{children}</article>;
-  }
+function Card(props: ICardProps) {
+  const { className, children } = props;
+  return <article className={cln(styles.card, className)}>{children}</article>;
 }
+
+Card.defaultProps = {
+  className: '',
+};
 
 export default Card;
