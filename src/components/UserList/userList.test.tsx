@@ -5,7 +5,7 @@ const cards = [
   {
     name: 'Ivan',
     surname: 'Busygin',
-    dateValue: '2001-01-01',
+    birthday: '2001-01-01',
     selectValue: 'React',
     checkboxValue: true,
     switchValue: 'Middle',

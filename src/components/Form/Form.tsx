@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import styles from './form.module.scss';
 import { IUser } from '../../types/ITypes';
 import Button from '../../UI/Button/Button';
@@ -29,10 +29,20 @@ function Form(props: IFormProps) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IUser>();
 
-  const onSubmit = async (data: IUser) => {
-    onAddNewCard(data);
+  const onSubmit = (data: FieldValues) => {
+    const file = data.filePhoto[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const filePhoto = reader.result as string;
+      const newData: FieldValues = { ...data, filePhoto };
+      onAddNewCard(newData as IUser);
+    };
+    reader.readAsDataURL(file);
+
+    reset();
   };
 
   return (
