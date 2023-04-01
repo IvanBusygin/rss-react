@@ -1,55 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './searchBar.module.scss';
 
-interface ISearchBarState {
-  inputValue: string;
-}
+function SearchBar() {
+  const storageKey = 'books-searchBarValue';
+  const [inputValue, setInputValue] = useState<string>('');
 
-class SearchBar extends Component<object, ISearchBarState> {
-  private storageKey = 'books-searchBarValue';
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
 
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      inputValue: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidMount(): void {
-    const savedValue = localStorage.getItem(this.storageKey);
+  useEffect(() => {
+    const savedValue = localStorage.getItem(storageKey);
     if (savedValue) {
-      this.setState({ inputValue: savedValue });
+      setInputValue(savedValue);
     }
-  }
+  }, []);
 
-  componentWillUnmount(): void {
-    const { inputValue } = this.state;
-    localStorage.setItem(this.storageKey, inputValue);
-  }
+  useEffect(() => {
+    localStorage.setItem(storageKey, inputValue);
+  }, [inputValue]);
 
-  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ inputValue: event.target.value });
-  }
-
-  render() {
-    const { inputValue } = this.state;
-    return (
-      <label
-        className={styles.label}
-        htmlFor="input-field"
-      >
-        Enter a value:
-        <input
-          className={styles.input}
-          type="text"
-          id="input-field"
-          value={inputValue}
-          onChange={this.handleChange}
-        />
-      </label>
-    );
-  }
+  return (
+    <label
+      className={styles.label}
+      htmlFor="input-field"
+    >
+      Enter a value:
+      <input
+        className={styles.input}
+        type="text"
+        id="input-field"
+        value={inputValue}
+        onChange={handleChange}
+      />
+    </label>
+  );
 }
 
 export default SearchBar;

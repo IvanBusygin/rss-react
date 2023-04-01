@@ -1,13 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import styles from './header.module.scss';
 import Nav from '../Nav/Nav';
-import withRouter from '../../../HOC/WithRouter';
 
-interface WithRouterProps {
-  location: ReturnType<typeof useLocation>;
-}
-
-function Header({ location }: WithRouterProps) {
+function Header() {
+  const location = useLocation();
   const localPath = location?.pathname.slice(1);
 
   return (
@@ -20,4 +16,4 @@ function Header({ location }: WithRouterProps) {
   );
 }
 
-export default withRouter(Header);
+export default Header;
