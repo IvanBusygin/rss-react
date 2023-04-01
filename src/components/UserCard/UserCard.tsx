@@ -6,8 +6,8 @@ interface IUserCardProps {
   user: IUser;
 }
 
-export default function UserCard({ user }: IUserCardProps) {
-  const { filePhoto, name, surname, dateValue, switchValue, selectValue, checkboxValue } = user;
+function UserCard({ user }: IUserCardProps) {
+  const { filePhoto, name, surname, birthday, switchValue, selectValue, checkboxValue } = user;
 
   return (
     <Card className={styles.user}>
@@ -20,7 +20,7 @@ export default function UserCard({ user }: IUserCardProps) {
       </div>
       <div>
         <h2 className={styles.user_name}>{`${name} ${surname}`}</h2>
-        <p className={styles.user_date}>{`Birthday: ${dateValue}`}</p>
+        <p className={styles.user_date}>{`Birthday: ${birthday}`}</p>
         <p className={styles.user_switch}>{`Level: ${switchValue}`}</p>
         <p className={styles.user_select}>{`Framework: ${selectValue}`}</p>
         <p className={styles.user_checkbox}>{`Need a job: ${checkboxValue ? 'Yes' : 'No'}`}</p>
@@ -28,3 +28,5 @@ export default function UserCard({ user }: IUserCardProps) {
     </Card>
   );
 }
+
+export default UserCard;

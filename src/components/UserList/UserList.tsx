@@ -7,7 +7,7 @@ interface IFormList {
   cards: IUser[];
 }
 
-export default function UserList(props: IFormList) {
+function UserList(props: IFormList) {
   const { cards } = props;
 
   return (
@@ -21,3 +21,5 @@ export default function UserList(props: IFormList) {
     </div>
   );
 }
+
+export default UserList;

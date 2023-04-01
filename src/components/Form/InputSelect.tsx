@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { RefObject } from 'react';
 import cln from 'classnames';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import styles from './form.module.scss';
 
 interface IInputProps {
   err?: boolean;
   errMsg?: string;
-
-  selectRef: RefObject<HTMLSelectElement>;
+  register?: UseFormRegisterReturn;
 }
 
-export default function InputSelect(props: IInputProps) {
-  const { selectRef, errMsg, err } = props;
+function InputSelect(props: IInputProps) {
+  const { errMsg, err, register } = props;
 
   return (
     <div
@@ -21,7 +20,7 @@ export default function InputSelect(props: IInputProps) {
         Your preferred framework
         <select
           className={styles.select}
-          ref={selectRef}
+          {...register}
           defaultValue="Choose"
         >
           <option value="Choose">Choose framework</option>
@@ -38,4 +37,7 @@ export default function InputSelect(props: IInputProps) {
 InputSelect.defaultProps = {
   err: undefined,
   errMsg: undefined,
+  register: undefined,
 };
+
+export default InputSelect;

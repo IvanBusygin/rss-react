@@ -30,7 +30,7 @@ export enum ILanguage {
 export interface IUser {
   name: string;
   surname: string;
-  dateValue: string;
+  birthday: string;
   selectValue: string;
   checkboxValue: boolean;
   switchValue: string;

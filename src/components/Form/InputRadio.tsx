@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { RefObject } from 'react';
 import cln from 'classnames';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import styles from './form.module.scss';
 
 interface IInputProps {
@@ -11,14 +11,11 @@ interface IInputProps {
   value1: string;
   value2: string;
   value3: string;
-  radio1Ref: RefObject<HTMLInputElement>;
-  radio2Ref: RefObject<HTMLInputElement>;
-  radio3Ref: RefObject<HTMLInputElement>;
+  register?: UseFormRegisterReturn;
 }
 
-export default function InputRadio(props: IInputProps) {
-  const { name, label, radio1Ref, radio2Ref, radio3Ref, value1, value2, value3, errMsg, err } =
-    props;
+function InputRadio(props: IInputProps) {
+  const { register, name, label, value1, value2, value3, errMsg, err } = props;
 
   return (
     <div
@@ -35,7 +32,7 @@ export default function InputRadio(props: IInputProps) {
               type="radio"
               name={name}
               value={value1}
-              ref={radio1Ref}
+              {...register}
             />
             {value1}
           </div>
@@ -44,7 +41,7 @@ export default function InputRadio(props: IInputProps) {
               type="radio"
               name={name}
               value={value2}
-              ref={radio2Ref}
+              {...register}
             />
             {value2}
           </div>
@@ -53,7 +50,7 @@ export default function InputRadio(props: IInputProps) {
               type="radio"
               name={name}
               value={value3}
-              ref={radio3Ref}
+              {...register}
             />
             {value3}
           </div>
@@ -67,4 +64,7 @@ export default function InputRadio(props: IInputProps) {
 InputRadio.defaultProps = {
   err: undefined,
   errMsg: undefined,
+  register: undefined,
 };
+
+export default InputRadio;
