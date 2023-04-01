@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import styles from './form.module.scss';
 import { IUser } from '../../types/ITypes';
 import Button from '../../UI/Button/Button';
@@ -29,10 +29,20 @@ function Form(props: IFormProps) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IUser>();
 
-  const onSubmit = async (data: IUser) => {
-    onAddNewCard(data);
+  const onSubmit = (data: FieldValues) => {
+    const file = data.filePhoto[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const filePhoto = reader.result as string;
+      const newData: FieldValues = { ...data, filePhoto };
+      onAddNewCard(newData as IUser);
+    };
+    reader.readAsDataURL(file);
+
+    reset();
   };
 
   return (
@@ -45,8 +55,7 @@ function Form(props: IFormProps) {
       <div className={styles.block}>
         <Input
           label="Name"
-          err={Boolean(errors.name)}
-          errMsg={errors.name && errors.name.message}
+          errors={errors.name}
           register={register('name', {
             required: ErrorMsg.nameReq,
             validate: {
@@ -57,8 +66,7 @@ function Form(props: IFormProps) {
 
         <Input
           label="Surname"
-          err={Boolean(errors.surname)}
-          errMsg={errors.surname && errors.surname.message}
+          errors={errors.surname}
           register={register('surname', {
             required: ErrorMsg.surnameReq,
             validate: {
@@ -70,10 +78,9 @@ function Form(props: IFormProps) {
 
       <div className={styles.block}>
         <Input
-          label="birthday"
+          label="Birthday"
           type="date"
-          err={Boolean(errors.birthday)}
-          errMsg={errors.birthday && errors.birthday.message}
+          errors={errors.birthday}
           register={register('birthday', {
             required: ErrorMsg.birthdayReg,
             validate: {
@@ -90,8 +97,7 @@ function Form(props: IFormProps) {
 
       <div className={styles.block}>
         <InputSelect
-          err={Boolean(errors.selectValue)}
-          errMsg={errors.selectValue && errors.selectValue.message}
+          errors={errors.selectValue}
           register={register('selectValue', {
             validate: {
               level: (val) => val !== 'Choose' || ErrorMsg.selectReq,
@@ -102,8 +108,7 @@ function Form(props: IFormProps) {
         <InputRadio
           label="Specify your level"
           name="switcher"
-          err={Boolean(errors.switchValue)}
-          errMsg={errors.switchValue && errors.switchValue.message}
+          errors={errors.switchValue}
           register={register('switchValue', {
             required: ErrorMsg.switchReq,
           })}
@@ -118,8 +123,7 @@ function Form(props: IFormProps) {
           label="Your Photo"
           type="file"
           accept="image/*"
-          err={Boolean(errors.filePhoto)}
-          errMsg={errors.filePhoto && errors.filePhoto.message}
+          errors={errors.filePhoto}
           register={register('filePhoto', {
             required: ErrorMsg.filePhotoReq,
           })}

@@ -34,5 +34,5 @@ export interface IUser {
   selectValue: string;
   checkboxValue: boolean;
   switchValue: string;
-  filePhoto: string | undefined;
+  filePhoto: string;
 }

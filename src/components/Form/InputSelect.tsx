@@ -1,20 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import cln from 'classnames';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import styles from './form.module.scss';
 
 interface IInputProps {
-  err?: boolean;
-  errMsg?: string;
   register?: UseFormRegisterReturn;
+  errors?: FieldError | undefined;
 }
 
 function InputSelect(props: IInputProps) {
-  const { errMsg, err, register } = props;
+  const { errors, register } = props;
 
   return (
     <div
-      className={`${styles.inputBlock} ${err ? cln(styles.inputBlock, styles.inputBlockErr) : ''}`}
+      className={`${styles.inputBlock} ${
+        errors ? cln(styles.inputBlock, styles.inputBlockErr) : ''
+      }`}
     >
       <label>
         Your preferred framework
@@ -28,16 +29,17 @@ function InputSelect(props: IInputProps) {
           <option value="React">React</option>
           <option value="Angular">Angular</option>
         </select>
-        <div className={styles.error}>{err && <p className={styles.error__msg}>{errMsg}</p>}</div>
+        <div className={styles.error}>
+          {errors && <p className={styles.error__msg}>{errors.message}</p>}
+        </div>
       </label>
     </div>
   );
 }
 
 InputSelect.defaultProps = {
-  err: undefined,
-  errMsg: undefined,
   register: undefined,
+  errors: undefined,
 };
 
 export default InputSelect;
