@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './searchBar.module.scss';
 
 function SearchBar() {
   const storageKey = 'books-searchBarValue';
   const [inputValue, setInputValue] = useState<string>('');
+  const searchInput = useRef('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -14,10 +15,14 @@ function SearchBar() {
     if (savedValue) {
       setInputValue(savedValue);
     }
+
+    return () => {
+      localStorage.setItem(storageKey, searchInput.current);
+    };
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(storageKey, inputValue);
+    searchInput.current = inputValue;
   }, [inputValue]);
 
   return (
