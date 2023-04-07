@@ -13,6 +13,11 @@ interface IInputProps {
 function Input(props: IInputProps) {
   const { errors, type, accept, label, register } = props;
 
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth().toString().padStart(2, '0');
+  const day = now.getDate().toString().padStart(2, '0');
+
   return (
     <div>
       <label className={`${styles.label} ${errors} ? styles.invalid : ''}`}>
@@ -20,6 +25,7 @@ function Input(props: IInputProps) {
         <input
           type={type}
           accept={accept}
+          max={`${year}-${month}-${day}`}
           {...register}
         />
       </label>

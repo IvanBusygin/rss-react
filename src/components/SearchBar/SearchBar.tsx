@@ -3,7 +3,7 @@ import styles from './searchBar.module.scss';
 
 function SearchBar() {
   const storageKey = 'books-searchBarValue';
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>(localStorage.getItem(storageKey) || '');
   const searchInput = useRef('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,19 +11,14 @@ function SearchBar() {
   };
 
   useEffect(() => {
-    const savedValue = localStorage.getItem(storageKey);
-    if (savedValue) {
-      setInputValue(savedValue);
-    }
+    searchInput.current = inputValue;
+  }, [inputValue]);
 
+  useEffect(() => {
     return () => {
       localStorage.setItem(storageKey, searchInput.current);
     };
   }, []);
-
-  useEffect(() => {
-    searchInput.current = inputValue;
-  }, [inputValue]);
 
   return (
     <label

@@ -92,6 +92,7 @@ function Form(props: IFormProps) {
         <Input
           type="checkbox"
           label="Need a job?"
+          register={register('checkboxValue')}
         />
       </div>
 
