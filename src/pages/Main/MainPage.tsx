@@ -31,7 +31,7 @@ function MainPage() {
     }
   };
 
-  const items = articles?.articles.slice(1, 30);
+  const items = articles?.articles.slice(0, 30);
 
   return (
     <>

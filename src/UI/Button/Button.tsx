@@ -7,15 +7,17 @@ interface IButton {
   onClick?: () => void;
   children?: string;
   className?: string;
+  dataTestId?: string;
 }
 
 function Button(props: IButton) {
-  const { className, type, onClick, children } = props;
+  const { dataTestId, className, type, onClick, children } = props;
   return (
     <button
       className={cln(styles.button, className)}
       type={type}
       onClick={onClick}
+      data-testid={dataTestId}
     >
       {children}
     </button>
@@ -27,6 +29,7 @@ Button.defaultProps = {
   children: null,
   type: 'button',
   className: '',
+  dataTestId: '',
 };
 
 export default Button;

@@ -53,11 +53,13 @@ function SearchBar({ onSearch, setSearchValue }: ISearchBar) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleInputKeyPress}
+          data-testid="search-input"
         />
       </label>
       <Button
         className={styles.btn}
         onClick={handlerButton}
+        dataTestId="search-btn"
       >
         Search
       </Button>
