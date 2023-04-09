@@ -1,4 +1,4 @@
-import styles from './bookslist.module.scss';
+import styles from './booksList.module.scss';
 import BookCard from '../BookCard/BookCard';
 import IBook from '../../types/ITypes';
 

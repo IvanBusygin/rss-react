@@ -1,39 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import styles from './searchBar.module.scss';
+import Button from '../../UI/Button/Button';
 
-function SearchBar() {
+interface IProps {
+  onSearch: () => void;
+  setSearchValue: (value: string) => void;
+}
+
+function SearchBar({ onSearch, setSearchValue }: IProps) {
   const storageKey = 'books-searchBarValue';
   const [inputValue, setInputValue] = useState<string>(localStorage.getItem(storageKey) || '');
   const searchInput = useRef('');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+  useEffect(() => {
+    searchInput.current = inputValue;
+    setSearchValue(inputValue);
+  }, [inputValue]);
+
+  const saveToLocalStorage = () => {
+    localStorage.setItem(storageKey, searchInput.current);
   };
 
   useEffect(() => {
-    searchInput.current = inputValue;
-  }, [inputValue]);
-
-  useEffect(() => {
     return () => {
-      localStorage.setItem(storageKey, searchInput.current);
+      saveToLocalStorage();
     };
   }, []);
 
+  const handlerButton = () => {
+    onSearch();
+    saveToLocalStorage();
+  };
+
+  const handleInputKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      saveToLocalStorage();
+      onSearch();
+    }
+  };
+
   return (
-    <label
-      className={styles.label}
-      htmlFor="input-field"
-    >
-      Enter a value:
-      <input
-        className={styles.input}
-        type="text"
-        id="input-field"
-        value={inputValue}
-        onChange={handleChange}
-      />
-    </label>
+    <div className={styles.block}>
+      <label
+        className={styles.label}
+        htmlFor="input-field"
+      >
+        Enter a world:
+        <input
+          className={styles.input}
+          type="text"
+          id="input-field"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleInputKeyPress}
+        />
+      </label>
+      <Button
+        className={styles.btn}
+        onClick={handlerButton}
+      >
+        Search
+      </Button>
+    </div>
   );
 }
 
