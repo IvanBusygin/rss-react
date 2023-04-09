@@ -2,12 +2,12 @@ import { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import styles from './searchBar.module.scss';
 import Button from '../../UI/Button/Button';
 
-interface IProps {
+interface ISearchBar {
   onSearch: () => void;
   setSearchValue: (value: string) => void;
 }
 
-function SearchBar({ onSearch, setSearchValue }: IProps) {
+function SearchBar({ onSearch, setSearchValue }: ISearchBar) {
   const storageKey = 'books-searchBarValue';
   const [inputValue, setInputValue] = useState<string>(localStorage.getItem(storageKey) || '');
   const searchInput = useRef('');

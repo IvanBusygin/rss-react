@@ -9,7 +9,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>,
     );
-    expect(screen.getByText('Adapted books in English')).toBeInTheDocument();
+    expect(screen.getByText('Search news articles')).toBeInTheDocument();
   });
 
   test('renders about page', () => {

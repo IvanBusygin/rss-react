@@ -36,7 +36,7 @@ module.exports = {
     'prettier',
   ],
   'rules': {
-    'no-console': isProd ? 'error' : 'off',
+    'no-console': [isProd ? 'error' : 'off', { "allow": ["error"] }],
     'no-debugger': isProd ? 'error' : 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
