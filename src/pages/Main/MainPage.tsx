@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useEffect, useState } from 'react';
 import styles from './mainPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Card from '../../UI/Card/Card';
@@ -10,13 +11,15 @@ import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import { Endpoint } from '../../utils/constants';
 
 function MainPage() {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState<string>(
+    localStorage.getItem('books-searchBarValue') || '',
+  );
 
   const { HTTPRequest, isLoading } = useFetch();
 
   const [articles, setArticles] = useState<IDataArticle>();
 
-  const handlerSendRequest = () => {
+  const handlerSendRequest = useCallback(() => {
     if (searchValue.trim().length !== 0) {
       HTTPRequest(
         {
@@ -29,7 +32,11 @@ function MainPage() {
         },
       );
     }
-  };
+  }, [HTTPRequest, searchValue]);
+
+  useEffect(() => {
+    handlerSendRequest();
+  }, []);
 
   const items = articles?.articles.slice(0, 30);
 

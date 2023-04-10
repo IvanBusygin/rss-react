@@ -15,7 +15,7 @@ function SearchBar({ onSearch, setSearchValue }: ISearchBar) {
   useEffect(() => {
     searchInput.current = inputValue;
     setSearchValue(inputValue);
-  }, [inputValue]);
+  }, [inputValue, setSearchValue]);
 
   const saveToLocalStorage = () => {
     localStorage.setItem(storageKey, searchInput.current);
