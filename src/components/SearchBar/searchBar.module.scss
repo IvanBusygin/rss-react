@@ -1,0 +1,27 @@
+.block {
+  display: flex;
+}
+
+.label {
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+
+  &:focus {
+    border-color: blue;
+  }
+}
+
+.btn {
+  margin-left: 5px;
+  height: 35px;
+  max-width: 5rem;
+  align-self: flex-end;
+}

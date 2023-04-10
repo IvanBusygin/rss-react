@@ -1,0 +1,26 @@
+.search-bar {
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 28rem;
+  width: 90%;
+  text-align: center;
+  display: flex;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: .5rem auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  //max-width: 200px;
+  height: 100px;
+  border-radius: 50%;
+}
