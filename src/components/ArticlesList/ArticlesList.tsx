@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import styles from './articlesList.module.scss';
 import { IArticle } from '../../types/INews';
 import ArticleCard from '../ArticleCard/ArticleCard';
@@ -11,9 +10,9 @@ function ArticlesList(props: IProps) {
   const { articles } = props;
   return (
     <div className={styles.booksList}>
-      {articles.map((article, index) => (
+      {articles.map((article) => (
         <ArticleCard
-          key={index}
+          key={crypto.randomUUID()}
           article={article}
         />
       ))}
