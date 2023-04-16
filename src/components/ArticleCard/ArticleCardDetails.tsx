@@ -6,7 +6,7 @@ interface Props {
   article: IArticle;
 }
 
-function ArticleCard({ article }: Props) {
+function ArticleCardDetails({ article }: Props) {
   const { author, title, description, urlToImage, url, publishedAt, source } = article;
 
   return (
@@ -37,4 +37,4 @@ function ArticleCard({ article }: Props) {
   );
 }
 
-export default ArticleCard;
+export default ArticleCardDetails;
