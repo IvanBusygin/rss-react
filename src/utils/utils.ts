@@ -11,7 +11,7 @@ export function isDateValid(selectedDate: string) {
   return selected < today;
 }
 
-export const makeUrl = (endpoint: string, query = 'apple'): string => {
+export const makeUrl = (endpoint: string, query = ''): string => {
   const urlOptions: { [index: string]: string } = { ...API_KEY };
   let url = `${SERVER_URL}${endpoint}?`;
 
