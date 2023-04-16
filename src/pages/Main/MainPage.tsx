@@ -32,7 +32,9 @@ function MainPage() {
 
   useEffect(() => {
     if (searchValue.trim().length === 0) dispatch(setSearchResults(null));
-    handlerSendRequest();
+    if (searchResults?.articles.length === 0) {
+      handlerSendRequest();
+    }
   }, []);
 
   const items = searchResults?.articles.slice(0, 30);
