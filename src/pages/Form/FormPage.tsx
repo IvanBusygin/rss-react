@@ -6,12 +6,17 @@ import Form from '../../components/Form/Form';
 import UserList from '../../components/UserList/UserList';
 import Modal from '../../components/Modal/Modal';
 
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import { setFormResults } from '../../redux/slices/searchSlice';
+
 function FormPage() {
-  const [cards, setCards] = useState<IUser[]>([]);
+  const dispatch = useAppDispatch();
+  const { formResults } = useAppSelector((state) => state.searchState);
+
   const [modal, setModal] = useState<boolean>(false);
 
   const handlerAddNewCard = (data: IUser) => {
-    setCards([...cards, data]);
+    dispatch(setFormResults(data));
     setModal(true);
     setTimeout(() => setModal(false), 5000);
   };
@@ -22,7 +27,7 @@ function FormPage() {
       <Card className={styles.form}>
         <Form onAddNewCard={handlerAddNewCard} />
       </Card>
-      <UserList cards={cards} />
+      <UserList cards={formResults} />
 
       <Modal isOpen={modal}>
         <p>The form has been sent</p>

@@ -29,7 +29,7 @@ function ArticlesModal(props: IModalProps) {
   return isOpen
     ? createPortal(
         <div
-          className={isVisible ? cls(styles.modal, styles.modal__visible) : styles.modal}
+          className={cls(styles.modal, { [styles.modal__visible]: isVisible })}
           onClick={closeHandler}
         >
           <div

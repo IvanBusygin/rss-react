@@ -1,59 +1,47 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import styles from './mainPage.module.scss';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import Card from '../../UI/Card/Card';
 
-import useFetch from '../../hooks/useFetch';
-import { IDataArticle } from '../../types/INews';
-
+import SearchBar from '../../components/SearchBar/SearchBar';
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
-import { Endpoint } from '../../utils/constants';
+
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import { fetchArticle, setSearchResults } from '../../redux/slices/searchSlice';
 
 function MainPage() {
-  const [searchValue, setSearchValue] = useState<string>(
-    localStorage.getItem('books-searchBarValue') || '',
+  const dispatch = useAppDispatch();
+  const { searchValue, searchResults, searchLoading } = useAppSelector(
+    (state) => state.searchState,
   );
-
-  const { HTTPRequest, isLoading } = useFetch();
-
-  const [articles, setArticles] = useState<IDataArticle>();
 
   const handlerSendRequest = useCallback(() => {
     if (searchValue.trim().length !== 0) {
-      HTTPRequest(
-        {
-          endpoint: Endpoint.EVERYTHING,
-          method: 'GET',
-          query: searchValue,
-        },
-        (data: IDataArticle) => {
-          setArticles(data);
-        },
-      );
+      dispatch(fetchArticle(searchValue));
     }
-  }, [HTTPRequest, searchValue]);
+  }, [searchValue]);
 
   useEffect(() => {
-    handlerSendRequest();
+    if (searchValue.trim().length === 0) dispatch(setSearchResults(null));
+    if (searchResults?.articles.length === 0) {
+      handlerSendRequest();
+    }
   }, []);
 
-  const items = articles?.articles.slice(0, 30);
+  const items = searchResults?.articles.slice(0, 30);
 
   return (
     <>
       <div className={styles.title}>Search news articles</div>
       <Card className={styles.searchBar}>
-        <SearchBar
-          onSearch={handlerSendRequest}
-          setSearchValue={setSearchValue}
-        />
+        <SearchBar onSearch={handlerSendRequest} />
       </Card>
-      {isLoading ? (
+      {searchLoading ? (
         <Card className={styles.loading}>Loading...</Card>
       ) : (
         items && <ArticlesList articles={items} />
       )}
+      {items?.length === 0 && !searchLoading && <Card className={styles.loading}>No results</Card>}
     </>
   );
 }

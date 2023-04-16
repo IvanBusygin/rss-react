@@ -48,6 +48,11 @@ module.exports = {
     'react/no-unused-class-component-methods': 1,
     'react/static-property-placement': 0,
     'react/jsx-props-no-spreading': 0,
+    "no-param-reassign": ["error", { // для redux: Assignment to property of function parameter 'state'
+      "props": true,
+      "ignorePropertyModificationsFor": ["state"]
+    }],
+    '@typescript-eslint/no-use-before-define': 'off',
   },
   'settings': {
     'react': { 'pragma': 'React', 'version': 'detect' },
