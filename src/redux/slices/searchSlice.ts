@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IDataArticle } from '../../types/INews';
+import { IUser } from '../../types/ITypes';
 
 interface ISearchState {
   searchValue: string;
   searchResults: IDataArticle | null;
+  formResults: IUser[];
 }
 const initialState: ISearchState = {
   searchValue: '',
   searchResults: null,
+  formResults: [],
 };
 
 const searchText = createSlice({
@@ -20,9 +23,13 @@ const searchText = createSlice({
     setSearchResults(state, action: PayloadAction<IDataArticle | null>) {
       state.searchResults = action.payload;
     },
+    setFormResults(state, action: PayloadAction<IUser>) {
+      const newCard = action.payload;
+      state.formResults.push(newCard);
+    },
   },
 });
 
-export const { setSearchValue, setSearchResults } = searchText.actions;
+export const { setSearchValue, setSearchResults, setFormResults } = searchText.actions;
 
 export default searchText.reducer;
