@@ -1,42 +1,29 @@
-import { useState, useEffect, useRef, KeyboardEvent } from 'react';
+import React, { KeyboardEvent } from 'react';
 import styles from './searchBar.module.scss';
 import Button from '../../UI/Button/Button';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import { setSearchValue } from '../../redux/slices/searchSlice';
 
 interface ISearchBar {
   onSearch: () => void;
-  setSearchValue: (value: string) => void;
 }
 
-function SearchBar({ onSearch, setSearchValue }: ISearchBar) {
-  const storageKey = 'books-searchBarValue';
-  const [inputValue, setInputValue] = useState<string>(localStorage.getItem(storageKey) || '');
-  const searchInput = useRef('');
+function SearchBar({ onSearch }: ISearchBar) {
+  const dispatch = useAppDispatch();
+  const { searchValue } = useAppSelector((state) => state.searchState);
 
-  useEffect(() => {
-    searchInput.current = inputValue;
-    setSearchValue(inputValue);
-  }, [inputValue, setSearchValue]);
-
-  const saveToLocalStorage = () => {
-    localStorage.setItem(storageKey, searchInput.current);
-  };
-
-  useEffect(() => {
-    return () => {
-      saveToLocalStorage();
-    };
-  }, []);
-
-  const handlerButton = () => {
-    onSearch();
-    saveToLocalStorage();
+  const handlerSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchValue(e.target.value));
   };
 
   const handleInputKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      saveToLocalStorage();
       onSearch();
     }
+  };
+
+  const handlerButton = () => {
+    onSearch();
   };
 
   return (
@@ -50,8 +37,8 @@ function SearchBar({ onSearch, setSearchValue }: ISearchBar) {
           className={styles.input}
           type="text"
           id="input-field"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={searchValue}
+          onChange={handlerSearchValue}
           onKeyDown={handleInputKeyPress}
           data-testid="search-input"
         />
