@@ -16,8 +16,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "vite/client"],
   },
-  "include": ["src", ".eslintrc.cjs", "vite.config.ts", "Globals.d.ts"],
+  "ts-node": {
+    "esm": true,
+  },
+  "include": ["src", ".eslintrc.cjs", "vite.config.ts", "Globals.d.ts", "server.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

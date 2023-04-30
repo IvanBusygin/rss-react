@@ -53,6 +53,8 @@ module.exports = {
       "ignorePropertyModificationsFor": ["state"]
     }],
     '@typescript-eslint/no-use-before-define': 'off',
+    'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
   },
   'settings': {
     'react': { 'pragma': 'React', 'version': 'detect' },
