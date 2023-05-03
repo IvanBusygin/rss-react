@@ -8,6 +8,7 @@ import { configDefaults } from 'vitest/config';
 
 import react from '@vitejs/plugin-react';
 import vitePluginEslint from 'vite-plugin-eslint';
+import vitePluginIstanbul from 'vite-plugin-istanbul';
 
 type IVite = { mode: string; command: string };
 
@@ -15,7 +16,14 @@ export default ({ mode }: IVite) => {
   const isDev = mode === 'development';
 
   return defineConfig({
-    plugins: [react(), vitePluginEslint()],
+    plugins: [
+      react(),
+      vitePluginEslint(),
+      vitePluginIstanbul({
+        cypress: true,
+        requireEnv: false,
+      }),
+    ],
     css: {
       devSourcemap: isDev,
       modules: {

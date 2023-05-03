@@ -11,7 +11,10 @@ function UserList(props: IFormList) {
   const { cards } = props;
 
   return (
-    <div className={styles.cardsList}>
+    <div
+      className={styles.cardsList}
+      data-testid="form-cards"
+    >
       {cards.map((card, index) => (
         <UserCard
           key={index}

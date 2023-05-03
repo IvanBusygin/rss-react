@@ -7,6 +7,7 @@ function NotFoundPage() {
       <h1 className={styles.errorCode}>404</h1>
       <p className={styles.errorMessage}>Page not found</p>
       <Link
+        data-testid="go-home"
         className={styles.homeLink}
         to="/"
       >
