@@ -14,7 +14,7 @@
     "coverage": "vitest run --coverage",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --e2e",
-    "cypress:e2e": "start-server-and-test dev http://localhost:3000/ cypress:run && npx nyc report --reporter=text-summary"
+    "cypress:coverage": "start-server-and-test dev http://localhost:3000/ cypress:run && npx nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -54,6 +54,7 @@
     "express": "^4.18.2",
     "jsdom": "^21.1.1",
     "msw": "^1.2.1",
+    "nyc": "^15.1.0",
     "prettier": "^2.8.7",
     "sass": "^1.62.0",
     "start-server-and-test": "^2.0.0",

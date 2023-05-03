@@ -9,5 +9,13 @@ describe('MainPage page', () => {
     cy.contains('Search news articles');
     cy.contains('Enter a world:');
     cy.contains('Search');
+    cy.contains('2023');
+    cy.contains('About');
+  });
+
+  it('bad query', () => {
+    cy.get('input').type('qweqweqwe');
+    cy.get('[data-testid="search-btn"]').click();
+    cy.contains('No results');
   });
 });
